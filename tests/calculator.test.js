@@ -52,8 +52,49 @@ describe('Calculator', () => {
     });
   });
   describe('.multiply', () => {
-    describe('it returns the result of multiplying the arguments', () => {
+    it('it returns the result of multiplying the arguments', () => {
+      const numbersToMultiply = [3, 5, 7];
+      const expected = 105;
+      const result = new Calculator().multiply(...numbersToMultiply);
+      expect(result).toBe(expected);
+    });
+    it('throws an error if any argument is not a number', () => {
+      const numbersToMultiply = [1, 3, 4, undefined];
+      expect(() => {
+        new Calculator().multiply(...numbersToMultiply);
+      }).toThrow(/must be numbers/);
+    });
+    it('returns 0 if no arguments are passed', () => {
       const numbersToMultiply = [];
+      const expected = 0;
+      const result = new Calculator().multiply(...numbersToMultiply);
+      expect(result).toEqual(expected);
+    });
+  });
+  describe('.divide', () => {
+    it('it returns the result of dividing a dividend by the divisors', () => {
+      const dividend = 35;
+      const divisors = [5];
+      const expected = 7;
+      const result = new Calculator().divide(dividend, ...divisors);
+      expect(result).toBe(expected);
+    });
+    it('throws an error if any argument is not a number', () => {
+      const dividend = 5;
+      const divisors = [1, 3, 4, 'hello'];
+      expect(() => {
+        new Calculator().divide(dividend, ...divisors);
+      }).toThrow(/must be numbers/);
+    });
+    it('returns 0 if no arguments are passed', () => {
+      const expected = 0;
+      const result = new Calculator().divide();
+      expect(result).toEqual(expected);
+    });
+    it('returns the dividend if no divisors are passed', () => {
+      const dividend = 55;
+      const divisors = [];
+      const result = new Calculator().divide(dividend, ...divisors);
     });
   });
 });
