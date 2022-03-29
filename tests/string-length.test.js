@@ -7,13 +7,13 @@ describe('stringLength', () => {
     const charCount = stringLength(string);
     expect(charCount).toEqual(expected);
   });
-  test('throw and error if string < 1 char', () => {
+  it('throw and error if string < 1 char', () => {
     const string = '';
     expect(() => {
       stringLength(string);
     }).toThrow(/less than 1/);
   });
-  test('throw and error if string > 10 chars', () => {
+  it('throw and error if string > 10 chars', () => {
     const string = 'My name is John Smith';
     expect(() => {
       stringLength(string);
